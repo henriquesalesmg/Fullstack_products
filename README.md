@@ -27,13 +27,9 @@ O sistema implementa princípios SOLID, garantindo código limpo, modular e fác
 	```bash
 	docker compose up --build -d
 	```
-3. Instale as dependências do frontend:
+3. Execute as migrações e seeders do banco:
 	```bash
-	docker compose exec app npm install
-	```
-4. Gere os assets do frontend:
-	```bash
-	docker compose exec app npm run build
+	docker compose exec app php artisan migrate --seed
 	```
 5. Execute as migrações e seeders do banco:
 	```bash
