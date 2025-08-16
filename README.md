@@ -104,12 +104,6 @@ Consulte o relatório de testes automatizados em [TEST_REPORT.md](./TEST_REPORT.
 - **Testes:** PHPUnit (Feature e Unit)
 - **SOLID:** Controllers, Services e Requests seguem princípios SOLID para garantir desacoplamento, responsabilidade única e fácil manutenção.
 
-
-## Observações
-- Prints das telas estão na pasta `public/screens` e são exibidos acima.
-- Para dúvidas ou sugestões, consulte os comentários no código ou abra uma issue.
-- Relatório de testes disponível em [TEST_REPORT.md](./TEST_REPORT.md).
-
 ---
 
 > Sistema desenvolvido para fins de avaliação técnica, destacando experiência com Vue, PostgreSQL, Docker e boas práticas de arquitetura SOLID.
