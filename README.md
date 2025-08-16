@@ -31,10 +31,6 @@ O sistema implementa princípios SOLID, garantindo código limpo, modular e fác
 	```bash
 	docker compose exec app php artisan migrate --seed
 	```
-5. Execute as migrações e seeders do banco:
-	```bash
-	docker compose exec app php artisan migrate --seed
-	```
 6. Acesse o sistema pelo navegador:
 	[http://localhost:8000](http://localhost:8000)
 
