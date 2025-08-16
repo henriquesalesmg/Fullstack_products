@@ -1,0 +1,53 @@
+@startuml
+entity "users" as users {
+  *id : bigint [PK]
+  name : string
+  email : string [unique]
+  birth_date : date
+  email_verified_at : timestamp
+  password : string
+  remember_token : string
+  created_at : timestamp
+  updated_at : timestamp
+}
+
+entity "products" as products {
+  *id : bigint [PK]
+  name : string [unique]
+  description : text
+  price : decimal(10,2)
+  stock_quantity : uint
+  created_at : timestamp
+  updated_at : timestamp
+}
+
+entity "personal_access_tokens" as tokens {
+  *id : bigint [PK]
+  tokenable_type : string
+  tokenable_id : bigint
+  name : text
+  token : string [unique]
+  abilities : text
+  last_used_at : timestamp
+  expires_at : timestamp
+  created_at : timestamp
+  updated_at : timestamp
+}
+
+entity "password_reset_tokens" as resets {
+  *email : string [PK]
+  token : string
+  created_at : timestamp
+}
+
+entity "sessions" as sessions {
+  *id : string [PK]
+  user_id : bigint [FK]
+  ip_address : string
+  user_agent : text
+  payload : longtext
+  last_activity : int
+}
+
+sessions ||..|| users : user_id
+@enduml

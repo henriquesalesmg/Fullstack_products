@@ -96,6 +96,16 @@ Consulte o relatório de testes automatizados em [TEST_REPORT.md](./TEST_REPORT.
 - Testes automatizados (unitários e de integração)
 - Docker para ambiente isolado
 
+## Diagrama Estrutural do Banco de Dados
+
+O diagrama UML das tabelas principais está disponível abaixo:
+
+![Diagrama UML do Banco de Dados](public/diagrama_uml.png)
+
+O arquivo fonte PlantUML está em `database-erd.puml`.
+
+---
+
 ## Detalhes Técnicos
 - **Frontend:** Vue 3 + Vite (SPA)
 - **Backend:** Laravel 12
