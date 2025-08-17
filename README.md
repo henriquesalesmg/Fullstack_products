@@ -2,9 +2,7 @@
 
 # Test Products - Sistema Fullstack Laravel + Vue + Docker + PostgreSQL
 
-## Repositório
-- HTTPS: [https://github.com/henriquesalesmg/products_fullstack.git](https://github.com/henriquesalesmg/products_fullstack.git)
-- SSH: `git@github.com:henriquesalesmg/products_fullstack.git`
+
 
 ## Descrição do Projeto
 Sistema desenvolvido para o teste técnico, focado em gestão de produtos domésticos. Utiliza Laravel 12 no backend, Vue 3 no frontend (SPA), Docker para ambiente isolado e PostgreSQL como banco de dados. A escolha do stack foi motivada pela vaga pleiteada, que valoriza experiência com Vue e PostgreSQL.
@@ -14,10 +12,34 @@ O sistema implementa princípios SOLID, garantindo código limpo, modular e fác
 
 ## Como Executar a Aplicação
 
-### Pré-requisitos
-- Docker e Docker Compose instalados
+## Sumário
 
-### Passos para rodar o sistema
+- [Pré-visualização - Telas](#pré-visualização---telas)
+- [Passos para rodar o sistema](#passos-para-rodar-o-sistema)
+- [Pré-requisitos](#pré-requisitos)
+- [Tecnologias Utilizadas](#tecnologias-utilizadas)
+- [Observações Importantes](#observações-importantes)
+- [Relatório de Testes](#relatório-de-testes)
+- [Funcionalidades](#funcionalidades)
+- [Estrutura do Projeto](#estrutura-do-projeto)
+- [Instruções de Instalação e Execução](#instruções-de-instalação-e-execução)
+- [Seeders e Banco de Dados](#seeders-e-banco-de-dados)
+- [APIs e Rotas](#apis-e-rotas)
+- [Customizações e Dicas](#customizações-e-dicas)
+- [Problemas Comuns](#problemas-comuns)
+- [Decisões de Arquitetura](#decisões-de-arquitetura)
+- [Medidas de Segurança](#medidas-de-segurança)
+- [Diagrama UML do Banco de Dados](#diagrama-uml-do-banco-de-dados)
+
+## Pré-visualização - Telas
+Dashboard:
+![Dashboard](public/screens/Dashboard1.jpg)
+Módulo de Produtos:
+![Produtos](public/screens/Products.jpg)
+Tela de Login:
+![Login](public/screens/login.jpg)
+
+## Passos para rodar o sistema
 1. Clone o repositório:
 	```bash
 	git clone https://github.com/henriquesalesmg/products_fullstack.git
@@ -36,7 +58,8 @@ O sistema implementa princípios SOLID, garantindo código limpo, modular e fác
 
 Pronto! O sistema estará disponível para uso, sem necessidade de ajustes manuais.
 
----
+## Pré-requisitos
+- Docker e Docker Compose instalados
 
 ## Tecnologias Utilizadas
 
@@ -57,29 +80,17 @@ Pronto! O sistema estará disponível para uso, sem necessidade de ajustes manua
 ### Testes
 - **PHPUnit**: Testes unitários e de integração
 
----
-
 ## Observações Importantes
 - O sistema foi projetado para funcionar "out of the box" via Docker, sem configurações manuais.
 - Para dúvidas, consulte os comentários no código ou abra uma issue.
-
----
-
 
 ## Relatório de Testes
 
 Consulte o relatório de testes automatizados em [TEST_REPORT.md](./TEST_REPORT.md).
 
-## Prints das Principais Telas
 
-- Dashboard:
-	![Dashboard](public/screens/Dashboard1.jpg)
-- Módulo de Produtos:
-	![Produtos](public/screens/Products.jpg)
-- Tela de Login:
-	![Login](public/screens/login.jpg)
 
-## Principais Funcionalidades
+## Funcionalidades
 - Autenticação protegendo CRUD web e API
 - CRUD completo de produtos (nome único, preço positivo, estoque não negativo)
 - Listagem com paginação e busca
@@ -88,15 +99,92 @@ Consulte o relatório de testes automatizados em [TEST_REPORT.md](./TEST_REPORT.
 - Testes automatizados (unitários e de integração)
 - Docker para ambiente isolado
 
-## Diagrama Estrutural do Banco de Dados
+## Estrutura do Projeto
+```
+/
+├── app/                 # Código backend Laravel
+│   ├── Http/Controllers  # Controllers da API e web
+│   ├── Models/           # Modelos Eloquent
+│   └── Providers/        # Providers Laravel
+├── resources/           # Frontend Vue, CSS, JS, Blade
+│   ├── js/               # SPA Vue 3, componentes, páginas
+│   ├── css/              # Estilos
+│   └── views/            # Templates Blade
+├── database/            # Migrations, seeders, factories
+├── public/              # Assets públicos, imagens, diagrama UML
+├── tests/               # Testes unitários e de integração
+├── Dockerfile           # Build do ambiente
+├── docker-compose.yml   # Orquestração dos containers
+├── .env                 # Configurações de ambiente
+└── README.md            # Documentação
+```
 
+## Instruções de Instalação e Execução
+1. Clone o repositório:
+	 ```bash
+	 git clone https://github.com/henriquesalesmg/products_fullstack.git
+	 cd test-products
+	 ```
+2. Suba os containers:
+	 ```bash
+	 docker compose up --build -d
+	 ```
+3. Execute as migrações e seeders do banco:
+	 ```bash
+	 docker compose exec app php artisan migrate --seed
+	 ```
+4. Acesse o sistema pelo navegador:
+	 [http://localhost:8000](http://localhost:8000)
+
+## Seeders e Banco de Dados
+- O banco é populado automaticamente ao rodar as migrações/seeders.
+- Usuários de exemplo são criados para facilitar testes.
+- Estrutura das tabelas: veja o diagrama UML abaixo.
+
+## APIs e Rotas
+- API RESTful protegida por autenticação.
+- Endpoints principais:
+	- `POST /api/login` - Login
+	- `POST /api/register` - Cadastro
+	- `GET /api/products` - Listagem de produtos
+	- `POST /api/products` - Criação de produto
+	- `PUT /api/products/{id}` - Atualização
+	- `DELETE /api/products/{id}` - Remoção
+- Rotas web protegidas por autenticação.
+- Todas as rotas aceitam e retornam JSON.
+
+## Customizações e Dicas
+- Configuração do banco via `.env`.
+- Seeders podem ser editados para adicionar mais dados de exemplo.
+- Para desenvolvimento, use `APP_DEBUG=true` no `.env`.
+- O frontend pode ser customizado em `resources/js` e `resources/css`.
+
+## Problemas Comuns
+- Se o container não subir, verifique se as portas 8000/5432 estão livres.
+- Se o banco não popular, rode novamente `php artisan migrate --seed`.
+- Permissões: se der erro, rode `chmod -R 777 storage bootstrap/cache` (apenas para desenvolvimento).
+- Se assets não carregarem, verifique se o build foi gerado corretamente.
+
+## Decisões de Arquitetura
+
+### Repository e Service
+- **Repository:** Abstrai o acesso ao banco de dados, permitindo que controllers e services dependam de uma interface, não diretamente dos models. Facilita testes, manutenção e extensão para novas fontes de dados.
+- **Service:** Centraliza regras de negócio e operações complexas, mantendo controllers enxutos e focados apenas em orquestrar requisições. O Service recebe DTOs, valida dados e dispara eventos, seguindo SRP e DIP.
+
+Esses padrões garantem desacoplamento, testabilidade e aderência ao SOLID, tornando o sistema mais robusto e fácil de evoluir.
+
+## Medidas de Segurança
+- Autenticação por token (API) e sessão (web).
+- Senhas criptografadas.
+- Validação de entrada em todas as rotas.
+- Rate limiting no login.
+- Proteção contra CSRF nas rotas web.
+- Proteção contra remoção do próprio usuário logado.
+
+## Diagrama UML do Banco de Dados
 O diagrama UML das tabelas principais está disponível abaixo:
-
 ![Diagrama UML do Banco de Dados](public/diagrama_uml.png)
-
 O arquivo fonte PlantUML está em `database-erd.puml`.
-
----
 
 ## Detalhes Técnicos
 - **Frontend:** Vue 3 + Vite (SPA)
@@ -116,60 +204,4 @@ O arquivo fonte PlantUML está em `database-erd.puml`.
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
