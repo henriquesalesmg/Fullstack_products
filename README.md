@@ -20,6 +20,7 @@ O sistema implementa princípios SOLID, garantindo código limpo, modular e fác
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
 - [Observações Importantes](#observações-importantes)
 - [Relatório de Testes](#relatório-de-testes)
+- [Como executar os testes](#como-executar-os-testes)
 - [Funcionalidades](#funcionalidades)
 - [Estrutura do Projeto](#estrutura-do-projeto)
 - [Instruções de Instalação e Execução](#instruções-de-instalação-e-execução)
@@ -42,7 +43,7 @@ Tela de Login:
 ## Passos para rodar o sistema
 1. Clone o repositório:
 	```bash
-	git clone https://github.com/henriquesalesmg/products_fullstack.git
+	git clone https://github.com/henriquesalesmg/Fullstack_products.git
 	cd test-products
 	```
 2. Suba os containers:
@@ -135,6 +136,13 @@ Consulte o relatório de testes automatizados em [TEST_REPORT.md](./TEST_REPORT.
 	 ```
 4. Acesse o sistema pelo navegador:
 	 [http://localhost:8000](http://localhost:8000)
+
+## Como executar os testes
+Para rodar todos os testes automatizados, utilize o comando abaixo:
+
+```bash
+docker compose exec app php artisan test
+```
 
 ## Seeders e Banco de Dados
 - O banco é populado automaticamente ao rodar as migrações/seeders.
