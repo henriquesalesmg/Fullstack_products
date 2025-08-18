@@ -13,17 +13,15 @@ O sistema implementa princípios SOLID, garantindo código limpo, modular e fác
 ## Como Executar a Aplicação
 
 ## Sumário
-
 - [Pré-visualização - Telas](#pré-visualização---telas)
-- [Passos para rodar o sistema](#passos-para-rodar-o-sistema)
 - [Pré-requisitos](#pré-requisitos)
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
 - [Observações Importantes](#observações-importantes)
-- [Relatório de Testes](#relatório-de-testes)
-- [Como executar os testes](#como-executar-os-testes)
 - [Funcionalidades](#funcionalidades)
 - [Estrutura do Projeto](#estrutura-do-projeto)
 - [Instruções de Instalação e Execução](#instruções-de-instalação-e-execução)
+- [Relatório de Testes](#relatório-de-testes)
+- [Como executar os testes](#como-executar-os-testes)
 - [Seeders e Banco de Dados](#seeders-e-banco-de-dados)
 - [APIs e Rotas](#apis-e-rotas)
 - [Customizações e Dicas](#customizações-e-dicas)
@@ -39,25 +37,6 @@ Módulo de Produtos:
 ![Produtos](public/screens/Products.jpg)
 Tela de Login:
 ![Login](public/screens/login.jpg)
-
-## Passos para rodar o sistema
-1. Clone o repositório:
-	```bash
-	git clone https://github.com/henriquesalesmg/Fullstack_products.git
-	cd test-products
-	```
-2. Suba os containers:
-	```bash
-	docker compose up --build -d
-	```
-3. Execute as migrações e seeders do banco:
-	```bash
-	docker compose exec app php artisan migrate --seed
-	```
-6. Acesse o sistema pelo navegador:
-	[http://localhost:8000](http://localhost:8000)
-
-Pronto! O sistema estará disponível para uso, sem necessidade de ajustes manuais.
 
 ## Pré-requisitos
 - Docker e Docker Compose instalados
@@ -84,12 +63,6 @@ Pronto! O sistema estará disponível para uso, sem necessidade de ajustes manua
 ## Observações Importantes
 - O sistema foi projetado para funcionar "out of the box" via Docker, sem configurações manuais.
 - Para dúvidas, consulte os comentários no código ou abra uma issue.
-
-## Relatório de Testes
-
-Consulte o relatório de testes automatizados em [TEST_REPORT.md](./TEST_REPORT.md).
-
-
 
 ## Funcionalidades
 - Autenticação protegendo CRUD web e API
@@ -123,7 +96,7 @@ Consulte o relatório de testes automatizados em [TEST_REPORT.md](./TEST_REPORT.
 ## Instruções de Instalação e Execução
 1. Clone o repositório:
 	 ```bash
-	 git clone https://github.com/henriquesalesmg/products_fullstack.git
+	 git clone https://github.com/henriquesalesmg/Fullstack_products.git
 	 cd test-products
 	 ```
 2. Suba os containers:
@@ -137,6 +110,11 @@ Consulte o relatório de testes automatizados em [TEST_REPORT.md](./TEST_REPORT.
 4. Acesse o sistema pelo navegador:
 	 [http://localhost:8000](http://localhost:8000)
 
+
+## Relatório de Testes
+
+Consulte o relatório de testes automatizados em [TEST_REPORT.md](./TEST_REPORT.md).
+
 ## Como executar os testes
 Para rodar todos os testes automatizados, utilize o comando abaixo:
 
@@ -145,8 +123,8 @@ docker compose exec app php artisan test
 ```
 
 ## Seeders e Banco de Dados
-- O banco é populado automaticamente ao rodar as migrações/seeders.
 - Usuários de exemplo são criados para facilitar testes.
+- Os exemplos de testes criados, são até o mês corrente para uma noção de como ficará o gráfico do Dashboard.
 - Estrutura das tabelas: veja o diagrama UML abaixo.
 
 ## APIs e Rotas
